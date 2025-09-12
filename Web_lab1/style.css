@@ -1,0 +1,133 @@
+* { box-sizing: border-box; }
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Georgia, sans-serif;
+}
+
+/* Контейнер як grid; позиція relative для абсолютних елементів (якщо знадобиться) */
+.container {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px; /* ліво - центр - право (фіксовані боки) */
+    /* строки: header | main (великий) | content (зелений, менший) | footer (невеликий) */
+    grid-template-rows: 80px 420px 110px 70px;
+    grid-template-areas:
+    "header header header"
+    "left main right"
+    "left content right"
+    "footer footer footer";
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+}
+
+header, main, aside, .content, footer {
+    overflow: auto;
+    word-break: break-word;
+    -ms-word-wrap: break-word;
+    padding: 10px;
+}
+
+header {
+    grid-area: header;
+    background: #032c4e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80px;           /* фіксована висота шапки */
+
+}
+
+/* Меню в шапці */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 6px 0 0 0;
+    display: flex;
+    gap: 22px;
+    font-size: 14px;
+}
+nav a { text-decoration: none; color: #c5cdd8; font-weight: bold; }
+
+aside.left {
+    grid-area: left;
+    background: #aec4df;
+    width: 200px;
+}
+
+aside.right {
+    grid-area: right;
+    background: #acacac;
+    width: 200px;
+    height: 650px;
+    grid-row: 2 / -1; /* З 2 рядка до кінця (включаючи footer) */
+    position: relative;
+    z-index: auto;
+    min-height: 0;
+    overflow: auto;
+    padding: 0;
+}
+
+
+/* ---------- Основний білий блок (великий) ---------- */
+main {
+    grid-area: main;
+    background: #f2f6fb;
+    min-height: 100%;  /* висота керується grid-template-rows (рядок main = 420px) */
+
+}
+
+
+.content {
+    grid-area: content;
+    background: #000000;
+    min-height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+
+footer {
+    grid-area: footer;
+    background: #034074;
+    text-align: left;
+    height: 120px;      /* фіксована висота футера */
+}
+
+.container h1 {
+    margin: 3px 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #c5cdd8;
+}
+
+h2 {
+    margin: 3px 0;
+    font-size: 18px;
+}
+
+.footer h2 {
+    color: #c5cdd8;
+}
+
+.footer p {
+    color: #c5cdd8;
+}
+
+.main p {
+    font-size: 18px;
+}
+
+.main h2{
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.main form {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
