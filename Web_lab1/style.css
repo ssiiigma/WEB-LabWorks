@@ -10,7 +10,7 @@ html, body {
     display: grid;
     grid-template-columns: 200px 1fr 200px; /* ліво - центр - право (фіксовані боки) */
     /* строки: header | main (великий) | content (зелений, менший) | footer (невеликий) */
-    grid-template-rows: 80px 420px 110px 70px;
+    grid-template-rows: auto 1fr auto auto;
     grid-template-areas:
     "header header header"
     "left main right"
@@ -22,10 +22,10 @@ html, body {
 }
 
 header, main, aside, .content, footer {
-    overflow: auto;
     word-break: break-word;
     -ms-word-wrap: break-word;
     padding: 10px;
+    overflow: visible;
 }
 
 header {
@@ -54,6 +54,7 @@ aside.left {
     grid-area: left;
     background: #aec4df;
     width: 200px;
+     min-height: 420px;
 }
 
 aside.right {
@@ -74,17 +75,18 @@ aside.right {
 main {
     grid-area: main;
     background: #f2f6fb;
-    min-height: 100%;  /* висота керується grid-template-rows (рядок main = 420px) */
-
 }
 
 
 .content {
     grid-area: content;
-    background: #000000;
-    min-height: 100%;
+    background: #000000 url("banner.webp") no-repeat center center;
+    background-size: cover;
     padding: 0;
     margin: 0;
+    height: 100px;
+    overflow: hidden;
+    align-self: end;
 }
 
 
@@ -92,7 +94,7 @@ footer {
     grid-area: footer;
     background: #034074;
     text-align: left;
-    height: 120px;      /* фіксована висота футера */
+    min-height: 120px;
 }
 
 .container h1 {
