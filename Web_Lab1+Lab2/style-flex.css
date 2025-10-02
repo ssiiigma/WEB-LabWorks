@@ -1,0 +1,134 @@
+/* style-flex.css */
+* { box-sizing: border-box; }
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Georgia, sans-serif;
+    overflow-y: auto;
+}
+
+/* Контейнер - flex колонка */
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* Header - фіксована висота вгорі */
+header {
+    flex: 0 0 auto;
+    background: #032c4e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    min-height: 80px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #c5cdd8;
+}
+
+/* Меню в шапці */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 6px 0 0 0;
+    display: flex;
+    gap: 22px;
+    font-size: 14px;
+}
+nav a {
+    text-decoration: none;
+    color: #c5cdd8;
+    font-weight: bold;
+}
+
+/* ОСНОВНЕ ВИПРАВЛЕННЯ: робимо middle контейнером для ВСІХ трьох колонок */
+.middle {
+    display: flex;
+    flex: 1;
+    min-height: 0;
+}
+
+/* Ліва колонка */
+aside.left {
+    width: 200px;
+    flex: 0 0 200px;
+    background: #aec4df;
+    padding: 10px;
+}
+
+/* Центральна колонка */
+.center-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Основний блок */
+main.main {
+    flex: 1;
+    background: #f2f6fb;
+    padding: 10px;
+}
+
+/* Нижній зелений */
+.content {
+    background: #000000 url("banner.webp") no-repeat center center;
+    background-size: cover;
+    height: 100px;
+    flex: 0 0 100px;
+}
+
+/* Права колонка */
+aside.right {
+    width: 200px;
+    flex: 0 0 200px;
+    background: #acacac;
+    margin-bottom: -120px; /* перекриття футера */
+    z-index: 100;
+}
+
+
+/* Footer - фіксована висота внизу */
+footer.footer {
+    flex: 0 0 auto;
+    background: #034074;
+    text-align: left;
+    padding: 10px;
+    color: #c5cdd8;
+    min-height: 120px;
+}
+
+/* Оформлення заголовків */
+h2 {
+    margin: 3px 0;
+    font-size: 18px;
+}
+.main h2 {
+    font-size: 20px;
+    text-align: center;
+}
+.footer h2 {
+    color: #c5cdd8;
+}
+.footer p {
+    color: #c5cdd8;
+}
+
+.main p {
+    font-size: 18px;
+}
+
+/* Стилі для зображень у правому блоці */
+aside.right img {
+    display: block;
+    margin: 0 auto 15px auto;
+    max-width: 100%;
+    padding: 0;
+}

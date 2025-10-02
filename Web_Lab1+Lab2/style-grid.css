@@ -1,0 +1,145 @@
+* { box-sizing: border-box; }
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Georgia, sans-serif;
+}
+
+/* Контейнер як grid; позиція relative для абсолютних елементів (якщо знадобиться) */
+.container {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: auto 1fr auto auto;
+    grid-template-areas:
+        "header header header"
+        "left main right"
+        "left content right"
+        "footer footer footer";
+    min-height: 100vh;
+    position: relative;
+}
+
+header, main, aside, .content, footer {
+    word-break: break-word;
+    -ms-word-wrap: break-word;
+    padding: 10px;
+    overflow: hidden;
+}
+
+header {
+    grid-area: header;
+    background: #032c4e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80px;           /* фіксована висота шапки */
+
+}
+
+/* Меню в шапці */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 6px 0 0 0;
+    display: flex;
+    gap: 22px;
+    font-size: 14px;
+}
+nav a { text-decoration: none; color: #c5cdd8; font-weight: bold; }
+
+aside.left {
+    grid-area: left;
+    background: #aec4df;
+    width: 200px;
+     min-height: 420px;
+}
+
+aside.right {
+    grid-area: right;
+    background: #acacac;
+    margin-bottom: -120px; /* перекриває футер */
+    z-index: 100;
+}
+
+
+/* ---------- Основний білий блок (великий) ---------- */
+main {
+    grid-area: main;
+    background: #f2f6fb;
+}
+
+
+.content {
+    grid-area: content;
+    background: #000000 url("banner.webp") no-repeat center center;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+    height: 100px;
+    overflow: hidden;
+    align-self: end;
+}
+
+
+footer {
+    grid-area: footer;
+    background: #034074;
+    text-align: left;
+    min-height: 120px;
+}
+
+.container h1 {
+    margin: 3px 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #c5cdd8;
+}
+
+h2 {
+    margin: 3px 0;
+    font-size: 18px;
+}
+
+.footer h2 {
+    color: #c5cdd8;
+}
+
+.footer p {
+    color: #c5cdd8;
+}
+
+.main p {
+    font-size: 18px;
+}
+
+.main h2{
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.main form {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "main"
+            "left"
+            "right"
+            "content"
+            "footer";
+    }
+
+    aside.left, aside.right {
+        width: auto;
+        height: auto;
+    }
+}

@@ -1,0 +1,101 @@
+/* style-float.css */
+* { box-sizing: border-box; }
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Georgia, sans-serif;
+}
+
+.container {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 80px; /* Висота header */
+    padding-bottom: 120px; /* Висота footer */
+}
+
+header, main, aside, .content, footer {
+    word-break: break-word;
+    padding: 10px;
+    overflow: hidden;
+}
+
+/* Header */
+header {
+    position: absolute;
+    text-align: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: #032c4e;
+    padding: 6px;
+    z-index: 50;
+}
+header h1 { margin: 0; color: #c5cdd8; font-size: 24px; }
+
+/* Навігація */
+nav ul { list-style: none; padding: 0; margin: 6px 0 0; }
+nav li { display: inline-block; margin-right: 18px; }
+nav a { color: #c5cdd8; text-decoration: none; font-weight: bold; }
+
+/* Footer */
+footer.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: #034074;
+    padding: 10px;
+    color: #c5cdd8;
+    z-index: 60;
+}
+
+/* Ліва колонка - FIXED POSITION */
+aside.left {
+    position: absolute;
+    top: 80px;
+    bottom: 120px;
+    left: 0;
+    width: 200px;
+    background: #aec4df;
+    padding: 10px;
+}
+
+aside.right {
+    position: absolute;
+    top: 80px;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    background: #acacac;
+    z-index: 100; /* поверх футера */
+}
+
+
+/* Main content - між лівим і правим aside */
+main.main {
+    margin: 0 200px; /* Відступи для лівої та правої колонок */
+    background: #f2f6fb;
+    min-height: 100%;
+    padding: 10px;
+    overflow: hidden; /* Мінімальна висота: висота viewport мінус header і footer */
+}
+
+/* Банер - під основним контентом */
+.content {
+    margin: 20px 200px 0 200px; /* Вирівнюємо по main */
+    height: 100px;
+    background: #000000 url("banner.webp") no-repeat center center;
+    background-size: cover;
+}
+
+/* Загальні стилі */
+h2 { margin: 3px 0; font-size: 18px; }
+.main h2 { font-size: 20px; text-align: center; }
+.main p { font-size: 18px; }
+
+/* Додаємо прокрутку для всього документу */
+html {
+    overflow-y: auto;
+}
