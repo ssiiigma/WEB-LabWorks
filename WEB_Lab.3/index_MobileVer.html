@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOKSTORE — Мобільна версія</title>
+    <style>
+        body {
+            margin:0;
+            padding:0;
+            background-color:#d9e2ed;
+            font-family: Georgia, sans-serif;
+        }
+        table {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #ffffff;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        td {
+            vertical-align: top;
+            padding: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #c5cdd8;
+            font-weight: bold;
+            margin: 0 5px;
+        }
+        h1, h2 {
+            margin: 0 0 10px 0;
+        }
+        p {
+            margin: 5px 0;
+        }
+
+        /* Мобільна адаптація */
+        @media only screen and (max-width: 600px) {
+            td, table {
+                width: 100% !important;
+                display: block;
+            }
+            td img {
+                width: 100% !important;
+                height: auto !important;
+            }
+            td[colspan="3"] h1, td[colspan="3"] p {
+                text-align: center;
+            }
+            td[colspan="3"] p a {
+                display: inline-block;
+                margin: 5px 0;
+            }
+            td[width="200"], td[width="200"] img {
+                width: 100% !important;
+                height: auto !important;
+            }
+            td[style*="position: absolute"] {
+                position: relative !important;
+                z-index: 1 !important;
+            }
+        }
+    </style>
+</head>
+<body>
+<table>
+    <!-- Хедер -->
+    <tr>
+        <td colspan="3" align="center" style="background-color:#032c4e; padding:15px 0;">
+            <h1 style="color:#c5cdd8; font-size:28px;">BOOKSTORE (MobileVer)</h1>
+            <p>
+                <a href="#">Головна</a>
+                <a href="#">Каталог книг</a>
+                <a href="#">Акції</a>
+                <a href="#">Вхід</a>
+                <a href="#">Реєстрація</a>
+            </p>
+        </td>
+    </tr>
+
+    <!-- Основний контент -->
+    <tr>
+        <td width="200" style="background-color:#aec4df; position: relative" >
+            <h2>Популярні книги та рейтинги:</h2>
+            <p>- Найпопулярніша класика 2023 року: Серія "Неканонічний канон" видавництва "Віхола"</p>
+            <p>- 100 найкращих книг 20-го століття: за версіями Goodreads, Le Monde та ін.</p>
+            <p><strong>Топові книги сьогодні — це:</strong></p>
+            <p>Вибір. Прийняти можливе;</p>
+            <p>Вони обидва помруть у кінці. Книга 1;</p>
+            <p>Іди туди, де страшно. І матимеш те, про що мрієш;</p>
+            <p>Посібник з убивства для хорошої дівчинки;</p>
+            <p>Хімія смерті. Перше розслідування;</p>
+        </td>
+
+        <td style="background-color:#f2f6fb; position: relative">
+            <h2 style="text-align:center;">Новини</h2>
+            <p>Книжкові новини в Україні охоплюють програми підтримки читання, такі як "єПідтримка", статистику читання молоді, акції з обміну книг, а також підбірки найпопулярніших видань року.</p>
+            <p>"Тисяча на книжки" — програма, за якою українці можуть отримати кошти для придбання книжок, подавши заявку через "Дію".</p>
+
+            <h2 style="text-align:center;">Цікаві факти</h2>
+            <p>1) «Гаррі Поттер і Келих Вогню» — понад 8 млн копій за першу добу.</p>
+            <p>2) 50% читачів читають перед сном.</p>
+            <p>3) 48% українців обирають книжки за рекомендаціями друзів.</p>
+
+            <h2 style="text-align:center;">Як обрати книгу?</h2>
+            <p>ТОП книг — це розділ, який варто регулярно переглядати, щоб не пропустити найцікавіші новинки книжкового світу...</p>
+        </td>
+
+        <td width="200" valign="top" align="center"
+            style="background-color:#acacac; padding:0;
+           position: relative; bottom:0; z-index: 10;">
+            <a href="#"><img src="https://github.com/ssiiigma/ssiiigma.github.io/blob/main/Web_lab1/images/image4.jpg?raw=true"
+                             alt="Книжкова полиця" style="display:block; margin-bottom:0;"></a>
+            <a href="#"><img src="https://github.com/ssiiigma/ssiiigma.github.io/blob/main/Web_lab1/images/image2.jpg?raw=true"
+                             alt="Книжкова полиця" style="display:block; margin-bottom:0;"></a>
+            <a href="#"><img src="https://github.com/ssiiigma/ssiiigma.github.io/blob/main/Web_lab1/images/image3.jpg?raw=true"
+                             alt="Книжкова полиця" style="display:block; margin-bottom:0;"></a>
+        </td>
+    </tr>
+
+    <!-- Банер -->
+    <tr>
+        <td style="background-color:#aec4df;">&nbsp;</td>
+        <td style="padding:0;">
+            <img src="https://github.com/ssiiigma/ssiiigma.github.io/blob/main/Web_lab1/images/banner.webp?raw=true" alt="Банер">
+        </td>
+        <td style="background-color:#acacac;">&nbsp;</td>
+    </tr>
+
+    <!-- Футер -->
+    <tr>
+        <td colspan="3" width="450" style="background-color:#034074; color:#c5cdd8; padding:25px 20px; text-align:left; z-index: 1">
+            <h2>Завжди з вами!</h2>
+            <p>Контакти, авторські права © 2025</p>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
