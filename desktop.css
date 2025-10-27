@@ -1,0 +1,136 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 250px 250px 250px;
+    grid-gap: 10px;
+    padding: 70px;
+    grid-template-areas:
+    "training backpack girl_orange"
+    "training success alarm_books"
+    "girl_building orange orange";
+}
+
+.block {
+    padding: 24px;
+    color: #b0ccf3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.training {
+    grid-area: training;
+    background-color: #1060a3;
+    text-align: left;
+    color: #fff;
+    padding: 40px;
+    align-items: flex-start;
+}
+
+.backpack {
+    grid-area: backpack;
+    background: url('image1.png') ;
+    width: 530px;
+    height: 250px;
+}
+
+.girl_orange {
+    grid-area: girl_orange;
+    background: url('image3.png') center/cover no-repeat;
+    width: 700px;
+}
+
+.success {
+    grid-area: success;
+    background-color: #ffffff;
+    color: #004983;
+    border: 3px solid #004983;
+    display: flex;
+    align-items: center;
+    width: 530px;
+    justify-content: center;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.alarm_books {
+    grid-area: alarm_books;
+    background: url('image4.png') center/cover no-repeat;
+    background-size: cover;
+}
+
+.girl_building {
+    grid-area: girl_building;
+    background: url('image2.png');
+}
+
+.orange {
+    grid-area: orange;
+    background-color: #76afdc;
+    color: #fff;
+    text-align: left;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.orange button {
+    background-color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: #76afdc;
+    font-weight: bold;
+    margin-top: 18px;
+    align-self: flex-start;
+}
+
+.orange button:hover {
+    background-color: #419dec;
+}
+
+.orange button:active {
+    transform: scale(0.98);
+}
+
+.training h1 {
+    margin: 0 0 16px 0;
+    font-size: 38px;
+    line-height: 1.1;
+}
+
+.training p {
+    margin: 0;
+    font-size: 18px;
+    opacity: 0.95;
+}
+
+.success h2 {
+    margin: 0;
+    font-size: 30px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+      "training training"
+      "backpack girl_orange"
+      "success alarm_books"
+      "girl_building orange";
+        grid-template-rows: auto;
+    }
+    .training { padding: 20px; }
+    .orange { padding: 18px; }
+}
