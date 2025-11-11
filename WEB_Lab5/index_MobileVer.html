@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOKSTORE — Мобільна версія 430x932 (з JS)</title>
+    <style>
+        body{margin:0;padding:0;background:#d9e2ed;font-family:Georgia, sans-serif}
+        table{width:430px;max-width:100%;margin:0;border-collapse:collapse;background:#fff}
+        td{vertical-align:top;padding:0}
+        .right-column{position:absolute;top:0;right:0;width:100px;bottom:0;background:#acacac;z-index:10;padding:0}
+        .content-container{position:relative;padding-right:105px}
+        .banner img{width:100%;height:80px}
+        .footer{background:#034074;color:#c5cdd8;padding:15px 10px;position:relative;z-index:1;height:80px}
+        .left-text{font-size:12px}
+        .triangle-form{border:1px dashed #999;padding:8px;margin-top:8px;background:#fff}
+        .btn{padding:6px 8px;border-radius:4px;border:1px solid #777;background:#e9eef6}
+    </style>
+</head>
+<body>
+
+<table>
+    <tr>
+        <td colspan="3" align="center" style="background-color:#032c4e;padding:10px 0;">
+            <h1 id="mHeaderTitle" style="color:#c5cdd8;font-size:20px;margin:5px 0;">BOOKSTORE (MobileVer)</h1>
+            <p id="mHeaderNav">
+                <a href="#">Головна  </a>
+                <a href="#">Каталог книг  </a>
+                <a href="#">Акції  </a>
+                <a href="#">Вхід  </a>
+                <a href="#">Реєстрація</a>
+            </p>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="3" style="position:relative;">
+            <div class="content-container">
+                <div style="width:300px;display:inline-block;vertical-align:top;background:#f2f6fb;padding:5px;" id="mCenter">
+                    <h2 style="text-align:center;">Новини</h2>
+                    <p class="m-left-text">Книжкові новини в Україні охоплюють програми підтримки читання...</p>
+
+                    <h2 style="text-align:center;margin-top:8px">Перевірка трикутника</h2>
+                    <div class="triangle-form" id="mTriangleFormContainer">
+                        <form id="mTriangleForm">
+                            <label>Сторона a: <input type="number" id="ma" required step="any"></label>
+                            <label>Сторона b: <input type="number" id="mb" required step="any"></label>
+                            <label>Сторона c: <input type="number" id="mc" required step="any"></label>
+                            <div style="margin-top:6px"><button class="btn" type="submit">Перевірити</button></div>
+                        </form>
+                    </div>
+
+                    <h2 style="text-align:center;margin-top:12px">Площа п'ятикутника</h2>
+                    <p id="mPentagonResult"></p>
+
+                </div>
+
+                <div style="width:300px;display:inline-block;vertical-align:top;background:#aec4df;padding:5px;" id="mLeft">
+                    <h2>Популярні книги:</h2>
+                    <p class="left-text m-left-text">- Найпопулярніша класика 2023 року: Серія "Неканонічний канон" видавництва "Віхола"</p>
+                    <p class="left-text m-left-text">- 100 найкращих книг 20-го століття: за версіями Goodreads, Le Monde та ін.</p>
+                    <label style="display:block;margin-top:8px"><input type="checkbox" id="mCapCheckbox"> Вмикати капіталізацію перших літер</label>
+                </div>
+
+                <div class="right-column" style="height:585px;width:130px;margin-right:0;top:0" id="mRight">
+                    <a href="#"><img src="https://github.com/ssiiigma/ssiiigma.github.io/blob/main/Web_lab1/images/image4.jpg?raw=true" alt="Книжкова полиця" height="100" width="130"></a>
+                    <a href="#"><img src="https://github.com/ssiiigma/ssiiigma.github.io/blob/main/Web_lab1/images/image2.jpg?raw=true" alt="Книжкова полиця" height="175" width="130"></a>
+                    <a href="#"><img src="https://github.com/ssiiigma/ssiiigma.github.io/blob/main/Web_lab1/images/image3.jpg?raw=true" alt="Книжкова полиця" height="160" width="130"></a>
+                    <a href="#"><img src="https://github.com/ssiiigma/ssiiigma.github.io/blob/main/Web_lab1/images/image2.jpg?raw=true" alt="Книжкова полиця" height="160" width="130"></a>
+                </div>
+            </div>
+        </td>
+    </tr>
+
+    <tr class="banner">
+        <td colspan="3">
+            <img src="https://github.com/ssiiigma/ssiiigma.github.io/blob/main/Web_lab1/images/banner.webp?raw=true" alt="Банер" height="70">
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="3" class="footer" id="mFooter">
+            <h2 id="mFooterTitle">Завжди з вами!</h2>
+            <p>Контакти, авторські права © 2025</p>
+        </td>
+    </tr>
+</table>
+
+<script>
+    (function mobileScripts(){
+        // 1) Поменяти місцями заголовки
+        const h = document.getElementById('mHeaderTitle');
+        const f = document.getElementById('mFooterTitle');
+        const tH = h.textContent;
+        h.textContent = f.textContent;
+        f.textContent = tH;
+
+        // 2) Площа п'ятикутника
+        (function(){
+            const side = 4;
+            function area(a){
+                return 0.25 * Math.sqrt(5*(5+2*Math.sqrt(5))) * a*a;
+            }
+            document.getElementById('mPentagonResult').textContent = `Площа регулярного п'ятикутника зі стороною ${side} = ${area(side).toFixed(3)}`;
+        })();
+
+        // 3) Трикутник з cookie (мобільна форма)
+        (function(){
+            function setCookie(n,v,d){const D=new Date();D.setTime(D.getTime()+d*24*60*60*1000);document.cookie=`${n}=${encodeURIComponent(v)};expires=${D.toUTCString()};path=/`}
+            function getCookie(n){const r=document.cookie.split(';').map(c=>c.trim()).find(c=>c.startsWith(n+'='));return r?decodeURIComponent(r.split('=')[1]):null}
+            function delCookie(n){document.cookie=`${n}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`}
+            const container = document.getElementById('mTriangleFormContainer');
+            const form = document.getElementById('mTriangleForm');
+            const c = getCookie('mTriangle');
+            if(c){container.style.display='none'; if(confirm(`Збережено: ${c}. Натисніть OK — видалимо cookie.`)){delCookie('mTriangle');alert('Cookie видалено');location.reload()} }
+            form.addEventListener('submit', function(e){e.preventDefault();
+                const a=parseFloat(document.getElementById('ma').value);
+                const b=parseFloat(document.getElementById('mb').value);
+                const c1=parseFloat(document.getElementById('mc').value);
+                if([a,b,c1].some(x=>isNaN(x)||x<=0)){alert('Введіть додатні числа');return}
+                const ok=(a+b>c1)&&(a+c1>b)&&(b+c1>a); const t = ok?`Так — можна.`:`Ні — не можна.`;
+                alert(t); setCookie('mTriangle', `Сторони ${a},${b},${c1}: ${t}`,7); });
+        })();
+
+        // 4) Capitalize on blur for left texts (mobile)
+        (function(){
+            const left = document.getElementById('mLeft');
+            const checkbox = document.getElementById('mCapCheckbox');
+            const KEY = 'm_left_cap';
+            function cap(){ const nodes = left.querySelectorAll('.m-left-text'); nodes.forEach(p=>{ p.textContent = p.textContent.split(/(\s+)/).map(token=>{ if(/\s+/.test(token)) return token; return token.replace(/^(\p{L})(.*)/u,(m,g1,g2)=>g1.toUpperCase()+g2) }).join('') }) }
+            if(localStorage.getItem(KEY)==='true'){ checkbox.checked = true; cap(); }
+            left.addEventListener('blur', function(){ if(checkbox.checked){ cap(); localStorage.setItem(KEY,'true')} }, true);
+            checkbox.addEventListener('change', ()=>{ if(!checkbox.checked) localStorage.setItem(KEY,'false') })
+        })();
+
+    })();
+</script>
+
+</body>
+</html>

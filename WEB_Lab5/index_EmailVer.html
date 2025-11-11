@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>BOOKSTORE — Email версія (з JS)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body{margin:0;padding:0;background:#d9e2ed;font-family:Georgia, sans-serif}
+        table{width:800px;margin:0 auto;border-collapse:collapse;background:#fff;position:relative}
+        .left{width:200px;background:#aec4df;padding:15px;vertical-align:top}
+        .center{background:#f2f6fb;padding:20px;vertical-align:top}
+        .right{width:200px;background:#acacac;padding:0;position:absolute;right:0;top:120px}
+        .footer{background:#034074;color:#c5cdd8;padding:25px 20px;text-align:left}
+        .content-end{margin-top:20px}
+        .triangle-form{margin-top:15px;border:1px dashed #999;padding:10px;border-radius:6px;background:#fff}
+        .controls{margin-top:8px}
+        .num-list li{cursor:pointer;padding:6px;border-bottom:1px solid #eee}
+        .editor-area{margin-top:8px}
+        .btn{padding:6px 10px;border-radius:4px;border:1px solid #777;background:#e9eef6}
+        label{display:block;margin-top:6px}
+    </style>
+</head>
+<body>
+
+<table cellpadding="0" cellspacing="0" border="0">
+    <tr>
+        <td colspan="3" align="center" style="background-color:#032c4e;padding:15px 0;">
+            <h1 id="headerTitle" style="color:#c5cdd8;font-size:28px;margin:0;">BOOKSTORE (EmailVer)</h1>
+            <p id="headerNav" style="margin:8px 0 0 0;color:#c5cdd8;">
+                <a href="#" style="color:#c5cdd8;text-decoration:none;font-weight:bold;margin:0 10px;">Головна</a>
+                <a href="#" style="color:#c5cdd8;text-decoration:none;font-weight:bold;margin:0 10px;">Каталог книг</a>
+                <a href="#" style="color:#c5cdd8;text-decoration:none;font-weight:bold;margin:0 10px;">Акції</a>
+                <a href="#" style="color:#c5cdd8;text-decoration:none;font-weight:bold;margin:0 10px;">Вхід</a>
+                <a href="#" style="color:#c5cdd8;text-decoration:none;font-weight:bold;margin:0 10px;">Реєстрація</a>
+            </p>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="left" id="leftBlock" valign="top">
+            <h2 style="font-size:18px;margin-top:0;">Популярні книги та рейтинги:</h2>
+            <p class="left-text">- Найпопулярніша класика 2023 року: Серія "Неканонічний канон" видавництва "Віхола" стала найпопулярнішою.</p>
+            <p class="left-text">- 100 найкращих книг 20-го століття: за версіями Goodreads, Le Monde та ін.</p>
+            <p style="font-size:16px;font-weight:bold;margin-top:6px">Топові книги сьогодні — це:</p>
+            <p class="left-text">Вибір. Прийняти можливе;</p>
+            <p class="left-text">Вони обидва помруть у кінці. Книга 1;</p>
+            <p class="left-text">Іди туди, де страшно. І матимеш те, про що мрієш;</p>
+            <p class="left-text">Посібник з убивства для хорошої дівчинки;</p>
+            <p class="left-text">Хімія смерті. Перше розслідування;</p>
+
+            <div style="margin-top:10px;border-top:1px solid rgba(0,0,0,0.05);padding-top:8px">
+                <label><input type="checkbox" id="capCheckbox"> Вмикати капіталізацію перших літер (при blur)</label>
+                <p style="font-size:12px;color:#333;margin-top:6px">Цей варіант зберігається в localStorage і застосовується при наступному відкриванні сторінки.</p>
+            </div>
+        </td>
+
+        <td class="center" id="centerBlock" valign="top">
+            <h2 style="font-size:20px;text-align:center;margin-top:0;">Новини</h2>
+            <p style="font-size:16px;">Книжкові новини в Україні охоплюють програми підтримки читання, такі як
+                "єПідтримка", статистику читання молоді, акції з обміну книг, а також підбірки найпопулярніших
+                видань року.</p>
+
+            <h2 style="font-size:20px;text-align:center;margin-top:10px">Перевірка трикутника</h2>
+            <div class="triangle-form" id="triangleFormContainer">
+                <form id="triangleForm">
+                    <label>Сторона a: <input type="number" id="a" required step="any"></label>
+                    <label>Сторона b: <input type="number" id="b" required step="any"></label>
+                    <label>Сторона c: <input type="number" id="c" required step="any"></label>
+                    <div class="controls">
+                        <button type="submit" class="btn">Перевірити</button>
+                    </div>
+                </form>
+                <p style="font-size:12px;margin-top:8px;color:#333">Результат перевірки зберігається в cookie.</p>
+            </div>
+
+            <h2 style="font-size:20px;text-align:center;margin-top:20px">Площа п'ятикутника (регулярного)</h2>
+            <p id="pentagonResult">(обчислення буде вставлене тут)</p>
+
+            <div class="content-end" id="contentEnd">
+                <h3>Редагування нумерованих блоків (подвійний клік)</h3>
+                <ol class="num-list" id="numList">
+                    <li data-index="1">Текст блоку 1 — короткий опис.</li>
+                    <li data-index="2">Текст блоку 2 — ще трохи тексту.</li>
+                    <li data-index="3">Текст блоку 3 — інформація.</li>
+                    <li data-index="4">Текст блоку 4 — приклад.</li>
+                    <li data-index="5">Текст блоку 5 — важлива нотатка.</li>
+                    <li data-index="6">Текст блоку 6 — додаткова інформація.</li>
+                </ol>
+            </div>
+        </td>
+
+        <td class="right" valign="top" id="rightBlock">
+            <a href="#"><img src="https://github.com/ssiiigma/ssiiigma.github.io/blob/main/Web_lab1/images/image4.jpg?raw=true" alt="Книжкова полиця" width="200" height="230" style="display:block;margin-bottom:0"></a>
+            <a href="#"><img src="https://github.com/ssiiigma/ssiiigma.github.io/blob/main/Web_lab1/images/image2.jpg?raw=true" alt="Книжкова полиця" width="200" height="360" style="display:block;margin-bottom:0"></a>
+            <a href="#"><img src="https://github.com/ssiiigma/ssiiigma.github.io/blob/main/Web_lab1/images/image3.jpg?raw=true" alt="Книжкова полиця" width="200" height="290" style="display:block;margin-bottom:-40px"></a>
+        </td>
+    </tr>
+
+    <tr>
+        <td width="200" style="background-color:#aec4df">&nbsp;</td>
+        <td colspan="1" style="padding:0;">
+            <img src="https://github.com/ssiiigma/ssiiigma.github.io/blob/main/Web_lab1/images/banner.webp?raw=true" alt="Банер" width="400" height="100" style="display:block;width:100%;max-width:400px;">
+        </td>
+        <td width="200" style="background-color:#acacac">&nbsp;</td>
+    </tr>
+
+    <tr>
+        <td colspan="3" class="footer" id="footerBlock">
+            <div>
+                <h2 id="footerTitle" style="margin:0;font-size:20px">Завжди з вами!</h2>
+                <p style="margin:5px 0 0 0;font-size:14px">Контакти, авторські права © 2025</p>
+            </div>
+        </td>
+    </tr>
+
+</table>
+
+<script>
+    // 1) Поміняти місцями тексти у хедері та у футері
+    (function swapHeaderFooter(){
+        const headerTitle = document.getElementById('headerTitle');
+        const headerNav = document.getElementById('headerNav');
+        const footerTitle = document.getElementById('footerTitle');
+        const hText = headerTitle.textContent;
+        const fText = footerTitle.textContent;
+        headerTitle.textContent = fText;
+        footerTitle.textContent = hText;
+    })();
+
+    // 2) Функція для площі п'ятикутника (регулярного)
+    (function pentagonArea(){
+        const sideLength = 5;
+        function areaRegularPentagon(a){
+            return 0.25 * Math.sqrt(5*(5+2*Math.sqrt(5))) * a*a;
+        }
+        const area = areaRegularPentagon(sideLength);
+        const out = document.getElementById('pentagonResult');
+        out.textContent = `Площа регулярного п'ятикутника зі стороною ${sideLength} = ${area.toFixed(3)}`;
+    })();
+
+    // 3) Скрипт для визначення можливості побудови трикутника та робота з cookies
+    (function triangleWithCookies(){
+        const formContainer = document.getElementById('triangleFormContainer');
+        const form = document.getElementById('triangleForm');
+
+        function setCookie(name,value,days){
+            const d = new Date();
+            d.setTime(d.getTime() + (days*24*60*60*1000));
+            document.cookie = `${name}=${encodeURIComponent(value)};expires=${d.toUTCString()};path=/`;
+        }
+        function getCookie(name){
+            const r = document.cookie.split(';').map(c=>c.trim()).find(c=>c.startsWith(name+'='));
+            return r? decodeURIComponent(r.split('=')[1]) : null;
+        }
+        function deleteCookie(name){
+            document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+        }
+
+        const triCookie = getCookie('triangleCheck');
+        if(triCookie){
+            formContainer.style.display = 'none';
+            if(confirm(`Знайдено збережений результат: ${triCookie}.\nНатисніть OK — дані в cookie будуть видалені.`)){
+                deleteCookie('triangleCheck');
+                alert('Cookie видалені');
+                location.reload();
+            } else
+            return;
+        }
+
+        form.addEventListener('submit', function(e){
+            e.preventDefault();
+            const a = parseFloat(document.getElementById('a').value);
+            const b = parseFloat(document.getElementById('b').value);
+            const c = parseFloat(document.getElementById('c').value);
+            if([a,b,c].some(v => isNaN(v) || v<=0)){
+                alert('Введіть додатні числа для всіх сторін');
+                return;
+            }
+            const can = (a + b > c) && (a + c > b) && (b + c > a);
+            const resText = can ? `Так — можна побудувати трикутник зі сторонами ${a}, ${b}, ${c}` : `Ні — трикутник зі сторонами ${a}, ${b}, ${c} НЕ може бути побудований`;
+            alert(resText);
+            setCookie('triangleCheck', resText, 7);
+        });
+    })();
+
+    // 4) При події blur встановлюємо верхній регістр перших літер усіх слів у лівому блоці
+    // та зберігаємо стан у localStorage
+
+    (function capitalizeOnBlur(){
+        const leftBlock = document.getElementById('leftBlock');
+        const checkbox = document.getElementById('capCheckbox');
+        const LS_KEY = 'left_capitalized';
+
+        function capitalizeTextNodes() {
+            const nodes = leftBlock.querySelectorAll('.left-text');
+            nodes.forEach(p => {
+                p.textContent = p.textContent.split(/(\s+)/).map(token => {
+                    if(/\s+/.test(token)) return token;
+                    return token.replace(/^(\p{L})(.*)/u, (m, g1, g2) => g1.toUpperCase() + g2);
+                }).join('');
+            });
+        }
+
+        const saved = localStorage.getItem(LS_KEY);
+        if(saved === 'true'){
+            checkbox.checked = true;
+            capitalizeTextNodes();
+        }
+
+        leftBlock.addEventListener('blur', function(){
+            if(checkbox.checked){
+                capitalizeTextNodes();
+                localStorage.setItem(LS_KEY, 'true');
+            }
+        }, true);
+
+        checkbox.addEventListener('change', function(){
+            if(!checkbox.checked){
+                localStorage.setItem(LS_KEY, 'false');
+            }
+        });
+    })();
+
+    // 5) Редагування тексту HTML-контейнерів (1..6)
+    (function editableNumberedBlocks(){
+        const list = document.getElementById('numList');
+        const STORE_PREFIX = 'numBlock_';
+
+        list.querySelectorAll('li').forEach(li => {
+            const idx = li.dataset.index;
+            const stored = localStorage.getItem(STORE_PREFIX + idx);
+            if(stored !== null){
+                li.textContent = stored;
+            }
+        });
+
+        list.addEventListener('dblclick', function(e){
+            const li = e.target.closest('li');
+            if(!li) return;
+            const hasElementChildren = Array.from(li.childNodes).some(n => n.nodeType === Node.ELEMENT_NODE);
+            if(hasElementChildren){
+                alert('Цей контейнер має дочірні теги — редагування заборонено.');
+                return;
+            }
+            openEditor(li);
+        });
+
+        function openEditor(li){
+            const idx = li.dataset.index;
+            const initialText = li.textContent;
+            if(li.querySelector('textarea')) return;
+            li.innerHTML = '';
+            const textarea = document.createElement('textarea');
+            textarea.style.width = '95%';
+            textarea.style.minHeight = '60px';
+            textarea.value = localStorage.getItem(STORE_PREFIX + idx) ?? initialText;
+            const saveBtn = document.createElement('button');
+            saveBtn.textContent = 'Зберегти';
+            saveBtn.className = 'btn';
+            saveBtn.style.marginRight = '6px';
+            const delBtn = document.createElement('button');
+            delBtn.textContent = 'Видалити з localStorage';
+            delBtn.className = 'btn';
+            const cancelBtn = document.createElement('button');
+            cancelBtn.textContent = 'Скасувати';
+            cancelBtn.className = 'btn';
+            cancelBtn.style.marginLeft = '6px';
+
+            const controls = document.createElement('div');
+            controls.className = 'editor-area';
+            controls.appendChild(saveBtn);
+            controls.appendChild(delBtn);
+            controls.appendChild(cancelBtn);
+
+            li.appendChild(textarea);
+            li.appendChild(controls);
+
+            saveBtn.addEventListener('click', function(){
+                const newText = textarea.value.trim();
+                localStorage.setItem(STORE_PREFIX + idx, newText);
+                li.textContent = newText;
+            });
+
+            delBtn.addEventListener('click', function(){
+                localStorage.removeItem(STORE_PREFIX + idx);
+                li.textContent = initialText;
+            });
+
+            cancelBtn.addEventListener('click', function(){
+                const stored = localStorage.getItem(STORE_PREFIX + idx);
+                li.textContent = stored ?? initialText;
+            });
+        }
+    })();
+
+</script>
+
+</body>
+</html>
+
+
+
